@@ -1,0 +1,34 @@
+ create table clientes(
+    -> idClientes int not null auto_increment,
+    -> nombre varchar(30) not null,
+    -> apellido varchar(30) not null,
+    -> dni int not null,
+    -> direccion varchar(60) not null,
+    -> fechaNac date not null,
+    -> primary key (idClientes))
+    -> ;
+
+create table proveedor(
+    -> idProveedor int not null auto_increment,
+    -> CUIL int not null,
+    -> nombre varchar(30) not null,
+    -> direccion varchar(60) not null,
+    -> primary key (idProveedor)
+    -> );
+
+create table productos(
+    -> idProducto int not null auto_increment,
+    -> nombre varchar(30) not null,
+    -> codigo int not null,
+    -> precio int not null,
+    -> idProveedor int not null,
+    -> primary key (idProducto),
+    -> foreign key(idProveedor) references proveedor(idProveedor)
+    -> );
+
+ create table clientes_productos(
+    -> idClientes int not null,
+    -> idProducto int not null,
+    -> foreign key(idClientes) references clientes(idClientes),
+    -> foreign key(idProducto) references productos(idProducto),
+    -> primary key (idClientes,idProducto));
